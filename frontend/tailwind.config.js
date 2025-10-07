@@ -28,12 +28,12 @@ export default {
           100: '#fee2e2',
           500: '#ef4444',
           700: '#b91c1c',
-        }
+        },
       },
       fontSize: {
         'display': ['3rem', { lineHeight: '1.2', fontWeight: '700' }],
         'heading': ['2rem', { lineHeight: '1.3', fontWeight: '600' }],
-      }
+      },
     },
   },
   plugins: [],
