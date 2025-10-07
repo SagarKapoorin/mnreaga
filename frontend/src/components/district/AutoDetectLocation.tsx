@@ -25,6 +25,12 @@ export const AutoDetectLocation: React.FC<AutoDetectLocationProps> = ({
         onClick={requestLocation}
         disabled={loading}
         className="w-full btn-primary flex items-center justify-center space-x-3 text-lg py-4"
+        aria-label={
+          loading
+            ? t('detectingLocation') || 'Detecting your location...'
+            : t('autoDetect') || 'Auto-detect my district'
+        }
+        aria-busy={loading}
       >
         {loading ? (
           <>

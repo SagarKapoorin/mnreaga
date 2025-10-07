@@ -35,14 +35,24 @@ export const DistrictSelector: React.FC<DistrictSelectorProps> = ({
 
   return (
     <div>
+      <label htmlFor="district-search" className="sr-only">
+        {t('searchDistrict') || 'Search district'}
+      </label>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <Search
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+          aria-hidden="true"
+        />
         <input
+          id="district-search"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder={
             placeholder || t('searchDistrict') || 'Search district...'
+          }
+          aria-label={
+            placeholder || t('searchDistrict') || 'Search district'
           }
           className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg"
         />
