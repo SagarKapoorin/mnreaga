@@ -3,6 +3,7 @@ import { Card } from '@components/common/Card';
 import { useTextToSpeech } from '@hooks/useTextToSpeech';
 import { Volume2 } from 'lucide-react';
 import { formatNumber } from '@utils/formatters';
+import { InfoTooltip } from '@components/tooltip/InfoTooltip';
 
 interface PerformanceCardProps {
   icon: string;
@@ -51,7 +52,12 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           </button>
         </div>
 
-        <h3 className="metric-label mb-2">{title}</h3>
+        <div className="flex items-center mb-2">
+          <h3 className="metric-label">{title}</h3>
+          {description && (
+            <InfoTooltip text={description} className="ml-2" />
+          )}
+        </div>
         
         <p className="metric-large mb-1">
           {typeof value === 'number' ? formatNumber(value) : value}
@@ -61,11 +67,6 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           <p className="text-sm text-gray-500 font-medium">{subtitle}</p>
         )}
 
-        {description && (
-          <p className="text-xs text-gray-600 mt-3 border-t pt-3">
-            💡 {description}
-          </p>
-        )}
       </div>
     </Card>
   );

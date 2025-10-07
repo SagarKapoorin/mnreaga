@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '@components/language/LanguageSwitcher';
+import { AudioPlayer } from '@components/language/AudioPlayer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,7 +26,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               </p>
             </div>
           </div>
-          <LanguageSwitcher />
+          <div className="flex items-center space-x-3">
+            <LanguageSwitcher />
+            <AudioPlayer
+              text={`${t('appTitle')}. ${t('appSubtitle')}`} 
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            />
+          </div>
         </div>
       </header>
 
