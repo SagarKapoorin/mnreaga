@@ -2,38 +2,52 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@components/common/Card';
 import { DistrictSelector } from '@components/district/DistrictSelector';
-import { ComparisonChart } from '@components/dashboard/ComparisonChart';
+import { DistrictComparisonChart } from '@components/dashboard/DistrictComparisonChart';
 
 const Comparison: React.FC = () => {
   const { t } = useTranslation();
-  const [selectedDistricts, setSelectedDistricts] = useState<string[]>([]);
-
-  const handleAddDistrict = (districtName: string) => {
-    if (!selectedDistricts.includes(districtName) && selectedDistricts.length < 3) {
-      setSelectedDistricts([...selectedDistricts, districtName]);
-    }
-  };
+  const [district1, setDistrict1] = useState<string>('');
+  const [district2, setDistrict2] = useState<string>('');
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">{t('compareDistricts') || 'Compare Districts'}</h1>
-      
-      <Card>
-        <p className="text-gray-600 mb-4">
-          {t('comparisonDesc') || 'Select up to 3 districts to compare their MGNREGA performance'}
-        </p>
-        <DistrictSelector onSelect={handleAddDistrict} />
+    <div className="max-w-7xl mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-6">
+        {t('compareDistricts') || 'Compare Districts'}
+      </h1>
+
+      <Card className="p-6 mb-6">
+        {!district1 && (
+          <div>
+            <h2 className="text-lg font-medium mb-2">
+              {t('selectFirstDistrict') || 'Select First District'}
+            </h2>
+            <DistrictSelector
+              onSelect={(id) => setDistrict1(id)}
+              placeholder={t('searchDistrict')}
+            />
+          </div>
+        )}
+
+        {district1 && !district2 && (
+          <div>
+            <h2 className="text-lg font-medium mb-2 mt-4">
+              {t('selectSecondDistrict') || 'Select Second District'}
+            </h2>
+            <DistrictSelector
+              onSelect={(id) => setDistrict2(id)}
+              exclude={[district1]}
+              placeholder={t('searchDistrict')}
+            />
+          </div>
+        )}
       </Card>
 
-      {/* Show comparison charts here */}
-      {selectedDistricts.length === 0 && (
-        <p className="text-gray-500">
-          {t('selectDistrictsToCompare') || 'Select districts to compare'}
-        </p>
+      {district1 && district2 && (
+        <DistrictComparisonChart
+          district1={district1}
+          district2={district2}
+        />
       )}
-      {selectedDistricts.map((district) => (
-        <ComparisonChart key={district} districtName={district} />
-      ))}
     </div>
   );
 };
