@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber, formatPercentage } from '@/utils/formatters';
+import { formatNumber } from '@/utils/formatters';
 import { Card } from '@components/common/Card';
 
 interface MetricCardProps {

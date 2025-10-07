@@ -1,6 +1,8 @@
 import axios, { AxiosError} from 'axios';
 import type { AxiosInstance } from 'axios';
 import type { ApiResponse, ApiError } from '@typings/api.types';
+// Fake data for development
+import { fakeDistricts, fakeCurrent, fakeHistory } from '@/data/fakeData';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
@@ -46,6 +48,27 @@ class ApiService {
   }
 
   async get<T>(url: string, params?: Record<string, any>): Promise<T> {
+    // Development-only stub
+    if (true) {
+      const path = url.startsWith('/') ? url.slice(1) : url;
+      const parts = path.split('/');
+      // GET /districts
+      if (parts[0] === 'districts' && parts.length === 1) {
+        return fakeDistricts as unknown as T;
+      }
+      // GET /districts/:code
+      if (parts[0] === 'districts' && parts.length === 2) {
+        const code = parts[1];
+        const data = fakeCurrent[code] || Object.values(fakeCurrent)[0];
+        return data as unknown as T;
+      }
+      // GET /districts/:code/history
+      if (parts[0] === 'districts' && parts[2] === 'history') {
+        const code = parts[1];
+        const data = fakeHistory[code] || Object.values(fakeHistory)[0];
+        return data as unknown as T;
+      }
+    }
     const response = await this.client.get<ApiResponse<T>>(url, { params });
     return response.data.data;
   }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DistrictSelector } from '@components/district/DistrictSelector';
 import { AutoDetectLocation } from '@components/district/AutoDetectLocation';
 import { Card } from '@components/common/Card';
-import { MapPin, TrendingUp, Users, IndianRupee } from 'lucide-react';
+import { MapPin, TrendingUp, Users } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();

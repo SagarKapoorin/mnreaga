@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query'; //for autorefreshing and caching
 import apiService from '@services/api';
 import type { MonthlyPerformance } from '@typings/performance.types';
 

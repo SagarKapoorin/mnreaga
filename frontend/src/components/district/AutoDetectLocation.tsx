@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGeolocation } from '@hooks/useGeolocation';
 import { MapPin, Loader2 } from 'lucide-react';
