@@ -2,7 +2,7 @@ import axios, { AxiosError} from 'axios';
 import type { AxiosInstance } from 'axios';
 import type { ApiResponse, ApiError } from '@typings/api.types';
 // Fake data for development
-import { fakeDistricts, fakeCurrent, fakeHistory } from '@/data/fakeData';
+import { fakeDistricts, fakeCurrent, fakeHistory, fakeComparison } from '@/data/fakeData';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
@@ -66,6 +66,15 @@ class ApiService {
       if (parts[0] === 'districts' && parts[2] === 'history') {
         const code = parts[1];
         const data = fakeHistory[code] || Object.values(fakeHistory)[0];
+        return data as unknown as T;
+      }
+      // GET /districts/:code/comparison or compare
+      if (
+        parts[0] === 'districts' &&
+        (parts[2] === 'comparison' || parts[2] === 'compare')
+      ) {
+        const code = parts[1];
+        const data = fakeComparison[code] || Object.values(fakeComparison)[0];
         return data as unknown as T;
       }
     }
