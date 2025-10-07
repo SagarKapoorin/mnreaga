@@ -117,3 +117,23 @@ export const fakeHistory: Record<string, HistoricalData> = {
     endDate: '2024-11-01',
   },
 };
+import type { ComparisonData } from '@typings/performance.types';
+
+// Fake comparison data per district
+export const fakeComparison: Record<string, ComparisonData> = {
+  '0202': {
+    district: fakeCurrent['0202'],
+    stateAverage: { ...fakeCurrent['0204'], districtName: 'State Average' },
+    nationalAverage: { ...fakeCurrent['0219'], districtName: 'National Average' },
+  },
+  '0204': {
+    district: fakeCurrent['0204'],
+    stateAverage: { ...fakeCurrent['0202'], districtName: 'State Average' },
+    nationalAverage: { ...fakeCurrent['0219'], districtName: 'National Average' },
+  },
+  '0219': {
+    district: fakeCurrent['0219'],
+    stateAverage: { ...fakeCurrent['0202'], districtName: 'State Average' },
+    nationalAverage: { ...fakeCurrent['0204'], districtName: 'National Average' },
+  },
+};

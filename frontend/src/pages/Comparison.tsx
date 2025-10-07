@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@components/common/Card';
 import { DistrictSelector } from '@components/district/DistrictSelector';
+import { ComparisonChart } from '@components/dashboard/ComparisonChart';
 
 const Comparison: React.FC = () => {
   const { t } = useTranslation();
@@ -25,6 +26,14 @@ const Comparison: React.FC = () => {
       </Card>
 
       {/* Show comparison charts here */}
+      {selectedDistricts.length === 0 && (
+        <p className="text-gray-500">
+          {t('selectDistrictsToCompare') || 'Select districts to compare'}
+        </p>
+      )}
+      {selectedDistricts.map((district) => (
+        <ComparisonChart key={district} districtName={district} />
+      ))}
     </div>
   );
 };
