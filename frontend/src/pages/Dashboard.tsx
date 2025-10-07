@@ -6,6 +6,8 @@ import { useHistoricalData } from '@hooks/useHistoricalData';
 import { Loading } from '@components/common/Loading';
 import { PerformanceCard } from '@components/dashboard/PerformanceCard';
 import { TrendChart } from '@components/dashboard/TrendChart';
+import { HistoricalData } from '@components/dashboard/HistoricalData';
+import { LeaderboardTable } from '@components/dashboard/LeaderboardTable';
 import { ComparisonChart } from '@components/dashboard/ComparisonChart';
 import { MetricCard } from '@components/dashboard/MetricCard';
 import { ArrowLeft, Share2 } from 'lucide-react';
@@ -155,6 +157,13 @@ const Dashboard: React.FC = () => {
       {historicalData && historicalData.records.length > 0 && (
         <TrendChart data={historicalData.records} />
       )}
+      {/* Historical Data Table */}
+      {historicalData && historicalData.records.length > 0 && (
+        <HistoricalData data={historicalData} />
+      )}
+
+      {/* District Leaderboard */}
+      <LeaderboardTable />
 
       {/* Comparison with State/National */}
       <ComparisonChart districtName={districtName || ''} />
