@@ -57,5 +57,9 @@
   "leaderboard": "மாவட்ட தரவரிசை",
   "comparisonDesc": "MGNREGA செயல்திறனை ஒப்பிடுவதற்காக அதிகபட்சம் 3 மாவட்டங்களைத் தேர்ந்தெடுக்கவும்",
  "officialMGNREGAWebsite": "அதிகாரப்பூர்வ MGNREGA இணையதளம்",
-  "openGovernmentData": "திறந்த அரசாங்க தரவு"
+  "openGovernmentData": "திறந்த அரசாங்க தரவு",
+  "aboutTitle": "மன்ரெ஗ா பற்றி",
+  "whatIsMGNREGA": "மன்ரெ஗ா என்பது என்ன?",
+  "aboutDashboard": "இந்த டாஷ்போர்டு பற்றி",
+  "dataSource": "தரவு மூலாதாரம்"
 }

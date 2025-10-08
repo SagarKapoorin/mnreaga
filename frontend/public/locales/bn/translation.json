@@ -57,6 +57,10 @@
   "leaderboard": "জেলা লিডারবোর্ড",
   "comparisonDesc": "এমজিএনআরইজিএ পারফরম্যান্স তুলনা করতে সর্বোচ্চ ৩টি জেলা নির্বাচন করুন",
   "officialMGNREGAWebsite": "সরকারি মনরেগা ওয়েবসাইট",
-  "openGovernmentData": "উন্মুক্ত সরকারি তথ্য"
+  "openGovernmentData": "উন্মুক্ত সরকারি তথ্য",
+  "aboutTitle": "MNREGA সম্পর্কে",
+  "whatIsMGNREGA": "MNREGA কী?",
+  "aboutDashboard": "এই ড্যাশবোর্ড সম্পর্কে",
+  "dataSource": "ডেটা উত্স"
 
 }

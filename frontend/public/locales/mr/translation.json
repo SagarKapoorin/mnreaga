@@ -57,5 +57,9 @@
   "leaderboard": "जिल्हा लीडरबोर्ड",
   "comparisonDesc": "त्यांच्या मनरेगा कार्यक्षमतेची तुलना करण्यासाठी जास्तीत जास्त ३ जिल्हे निवडा",
   "officialMGNREGAWebsite": "अधिकृत मनरेगा वेबसाइट",
-  "openGovernmentData": "उघडा सरकारी डेटा"
+  "openGovernmentData": "उघडा सरकारी डेटा",
+  "aboutTitle": "मनरेगा बद्दल",
+  "whatIsMGNREGA": "मनरेगा काय आहे?",
+  "aboutDashboard": "या डॅशबोर्डबद्दल",
+  "dataSource": "डेटा स्रोत"
 }

@@ -57,5 +57,9 @@
   "leaderboard": "District Leaderboard",
   "comparisonDesc": "Select up to 3 districts to compare their MGNREGA performance",
   "officialMGNREGAWebsite": "Official MGNREGA Website",
-  "openGovernmentData": "Open Government Data"
+  "openGovernmentData": "Open Government Data",
+  "aboutTitle": "About MGNREGA",
+  "whatIsMGNREGA": "What is MGNREGA?",
+  "aboutDashboard": "About This Dashboard",
+  "dataSource": "Data Source"
 }

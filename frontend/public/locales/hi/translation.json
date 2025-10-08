@@ -52,5 +52,9 @@
   "leaderboard": "जिला लीडरबोर्ड",
   "comparisonDesc": "मनरेगा प्रदर्शन की तुलना के लिए 3 जिलों का चयन करें",
  "officialMGNREGAWebsite": "आधिकारिक मनरेगा वेबसाइट",
-  "openGovernmentData": "खुला सरकारी डेटा"
+  "openGovernmentData": "खुला सरकारी डेटा",
+  "aboutTitle": "मनरेगा के बारे में",
+  "whatIsMGNREGA": "मनरेगा क्या है?",
+  "aboutDashboard": "इस डैशबोर्ड के बारे में",
+  "dataSource": "डेटा स्रोत"
 }
