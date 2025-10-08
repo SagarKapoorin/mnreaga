@@ -1,12 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import viteImagemin from 'vite-plugin-imagemin'
 import path from 'path'
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(), // Add this plugin
+    // Optimize images and SVGs at build time
+    viteImagemin({
+      gifsicle: { optimizationLevel: 7 },
+      optipng: { optimizationLevel: 7 },
+      mozjpeg: { quality: 80 },
+      pngquant: { quality: [0.7, 0.9] },
+      svgo: {
+        plugins: [
+          { name: 'removeViewBox' },
+          { name: 'removeDimensions' },
+        ],
+      },
+    }),
   ],
   resolve: {
     alias: {

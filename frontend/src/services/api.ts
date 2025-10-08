@@ -56,6 +56,10 @@ class ApiService {
       if (parts[0] === 'districts' && parts.length === 1) {
         return fakeDistricts as unknown as T;
       }
+      // GET /districts/current (all districts current performance)
+      if (parts[0] === 'districts' && parts[1] === 'current' && parts.length === 2) {
+        return Object.values(fakeCurrent) as unknown as T;
+      }
       // GET /districts/:code
       if (parts[0] === 'districts' && parts.length === 2) {
         const code = parts[1];

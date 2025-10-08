@@ -1,0 +1,44 @@
+stages:
+  - lint
+  - typecheck
+  - test
+  - build
+
+variables:
+  NODE_IMAGE: node:18-alpine
+
+cache:
+  key: frontend-cache
+  paths:
+    - node_modules/
+
+lint:
+  image: $NODE_IMAGE
+  stage: lint
+  script:
+    - npm ci
+    - npm run lint
+
+typecheck:
+  image: $NODE_IMAGE
+  stage: typecheck
+  script:
+    - npm ci
+    - npm run type-check
+
+test:
+  image: $NODE_IMAGE
+  stage: test
+  script:
+    - npm ci
+    - npm test
+
+build:
+  image: $NODE_IMAGE
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
