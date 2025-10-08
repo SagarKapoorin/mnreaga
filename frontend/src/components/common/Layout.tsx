@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '@components/language/LanguageSwitcher';
 import { AudioPlayer } from '@components/language/AudioPlayer';
+import { NavLink } from 'react-router-dom';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,11 +15,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-gradient-to-r from-primary-600 to-primary-700 text-white sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-5 flex justify-between items-center">
+        <div className="container mx-auto px-4 py-5 flex items-center justify-between">
+          {/* Logo and Title */}
           <div className="flex items-center space-x-4">
             <div className="text-4xl animate-pulse">🇮🇳</div>
             <div>
-            <h1 className="text-xl md:text-2xl font-bold">
+              <h1 className="text-xl md:text-2xl font-bold">
                 {t('appTitle')}
               </h1>
               <p className="text-xs md:text-sm text-white/80 font-medium">
@@ -26,11 +28,45 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               </p>
             </div>
           </div>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex space-x-6">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-white underline font-semibold'
+                  : 'text-white/80 hover:text-white transition-colors'
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/compare"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-white underline font-semibold'
+                  : 'text-white/80 hover:text-white transition-colors'
+              }
+            >
+              Compare
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-white underline font-semibold'
+                  : 'text-white/80 hover:text-white transition-colors'
+              }
+            >
+              About
+            </NavLink>
+          </nav>
+          {/* Controls: Language + Audio */}
           <div className="flex items-center space-x-3">
             <LanguageSwitcher />
             <AudioPlayer
               text={`${t('appTitle')}. ${t('appSubtitle')}`} 
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-2 hover:bg-white/20 rounded-full transition-colors"
             />
           </div>
         </div>
