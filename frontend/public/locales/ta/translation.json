@@ -55,5 +55,7 @@
   "jobCards": "வேலை அட்டைகள்",
   "performanceScore": "செயல்திறன் மதிப்பெண்",
   "leaderboard": "மாவட்ட தரவரிசை",
-  "comparisonDesc": "MGNREGA செயல்திறனை ஒப்பிடுவதற்காக அதிகபட்சம் 3 மாவட்டங்களைத் தேர்ந்தெடுக்கவும்"
+  "comparisonDesc": "MGNREGA செயல்திறனை ஒப்பிடுவதற்காக அதிகபட்சம் 3 மாவட்டங்களைத் தேர்ந்தெடுக்கவும்",
+ "officialMGNREGAWebsite": "அதிகாரப்பூர்வ MGNREGA இணையதளம்",
+  "openGovernmentData": "திறந்த அரசாங்க தரவு"
 }

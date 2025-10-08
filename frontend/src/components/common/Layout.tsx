@@ -58,14 +58,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <a href="https://nrega.nic.in" target="_blank" rel="noopener noreferrer"
                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 flex items-center group">
                     <span className="mr-2 group-hover:mr-3 transition-all">→</span>
-                    Official MGNREGA Website
+                    {t('officialMGNREGAWebsite')}
                   </a>
                 </li>
                 <li>
                   <a href="https://data.gov.in" target="_blank" rel="noopener noreferrer"
                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 flex items-center group">
                     <span className="mr-2 group-hover:mr-3 transition-all">→</span>
-                    Open Government Data
+                    {t('openGovernmentData')}
                   </a>
                 </li>
               </ul>
