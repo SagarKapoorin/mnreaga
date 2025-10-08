@@ -30,7 +30,7 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
   };
 
   return (
-    <Card className={`${colorClass} border-l-4 relative overflow-hidden group hover:border-l-8 transition-all duration-300`}>
+    <Card className={`min-w-0 p-8 ${colorClass} border-l-4 relative overflow-visible group hover:border-l-8 transition-all duration-300`}>
       {/* Background Pattern */}
       <div className="absolute top-0 right-0 opacity-5 text-9xl transform group-hover:scale-110 transition-transform duration-500">
         {icon}
@@ -38,7 +38,7 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
 
       {/* Content */}
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex justify-between items-start mb-6">
           <div className="text-6xl transform group-hover:scale-110 transition-transform duration-300">{icon}</div>
           <button
             onClick={handleSpeak}
@@ -52,26 +52,21 @@ export const PerformanceCard: React.FC<PerformanceCardProps> = ({
           </button>
         </div>
 
-        <div className="flex items-center mb-2">
-          <h3 className="metric-label">{title}</h3>
+        <div className="flex flex-wrap items-center mb-4">
+          <h3 className="metric-label whitespace-normal break-words flex-1 min-w-0">{title}</h3>
           {description && (
-            <InfoTooltip text={description} className="ml-2" />
+            <InfoTooltip text={description} className="ml-2 flex-shrink-0 mt-1" />
           )}
         </div>
         
-        <p className="metric-large mb-1">
+        <p className="metric-large mb-3">
           {typeof value === 'number' ? formatNumber(value) : value}
         </p>
 
         {subtitle && (
-          <p className="text-sm text-gray-600 font-semibold">{subtitle}</p>
+          <p className="text-sm text-gray-600 font-medium mb-4 whitespace-normal break-words">{subtitle}</p>
         )}
 
-        {description && (
-          <p className="text-xs text-gray-600 mt-4 border-t pt-3 leading-relaxed">
-            💡 {description}
-          </p>
-        )}
       </div>
     </Card>
   );

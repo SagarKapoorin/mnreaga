@@ -57,7 +57,7 @@ export const DistrictSelector: React.FC<DistrictSelectorProps> = ({
           className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg"
         />
       </div>
-      <div className="mt-2 max-h-60 overflow-y-auto border border-gray-200 rounded-lg">
+      <div className="mt-2 max-h-60 overflow-y-auto bg-white shadow-lg rounded-lg border border-gray-200">
         {filtered.map((d) => (
           <button
             key={d.id}

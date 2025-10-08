@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="w-full max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between mb-12 animate-fade-in">
         <div className="flex items-center space-x-4">
@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Performance Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
         <PerformanceCard
           icon="👥"
           title={t('jobCardsIssued') || 'Job Cards Issued'}
@@ -129,7 +129,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Social Composition */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         <MetricCard
           icon="👩"
           title={t('womenWorkers') || 'Women Workers'}

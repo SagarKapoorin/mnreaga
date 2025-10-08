@@ -13,23 +13,26 @@ export const HistoricalData: React.FC<HistoricalDataProps> = ({ data }) => {
     return null;
   }
   return (
-    <Card className="col-span-full mt-8">
+    <Card className="w-full mt-8">
       <h2 className="text-xl font-semibold mb-4">
         {t('historicalData') || 'Historical Data'}
       </h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 shadow">
+        <table className="min-w-full bg-white divide-y divide-gray-200">
+          <thead className="bg-primary-100">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">{t('month') || 'Month'}</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">{t('jobCards') || 'Job Cards'}</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">{t('personDays') || 'Person Days'}</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">{t('performanceScore') || 'Performance Score'}</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-primary-700">{t('month') || 'Month'}</th>
+              <th className="px-4 py-3 text-right text-sm font-semibold text-primary-700">{t('jobCards') || 'Job Cards'}</th>
+              <th className="px-4 py-3 text-right text-sm font-semibold text-primary-700">{t('personDays') || 'Person Days'}</th>
+              <th className="px-4 py-3 text-right text-sm font-semibold text-primary-700">{t('performanceScore') || 'Performance Score'}</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {data.records.map((rec) => (
-              <tr key={`${rec.month}-${rec.year}`}>
+          <tbody>
+            {data.records.map((rec, idx) => (
+              <tr
+                key={`${rec.month}-${rec.year}`}
+                className={`${idx % 2 === 0 ? 'bg-white' : 'bg-primary-50'} hover:bg-primary-100 transition-colors`}
+              >
                 <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{`${rec.month} ${rec.year}`}</td>
                 <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-800 text-right">{rec.jobCardsIssued.toLocaleString()}</td>
                 <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-800 text-right">{rec.personDaysGenerated.toLocaleString()}</td>

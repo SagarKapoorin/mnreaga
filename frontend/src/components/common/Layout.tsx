@@ -13,15 +13,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
+      <header className="bg-gradient-to-r from-primary-600 to-primary-700 text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-5 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <div className="text-4xl animate-pulse">🇮🇳</div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-xl md:text-2xl font-bold">
                 {t('appTitle')}
               </h1>
-              <p className="text-xs md:text-sm text-gray-600 font-medium">
+              <p className="text-xs md:text-sm text-white/80 font-medium">
                 {t('appSubtitle')}
               </p>
             </div>

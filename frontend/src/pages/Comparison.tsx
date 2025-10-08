@@ -20,31 +20,29 @@ const Comparison: React.FC = () => {
         />
       </h1>
 
-      <Card className="p-6 mb-6">
-        {!district1 && (
-          <div>
-            <h2 className="text-lg font-medium mb-2">
-              {t('selectFirstDistrict') || 'Select First District'}
-            </h2>
-            <DistrictSelector
-              onSelect={(id) => setDistrict1(id)}
-              placeholder={t('searchDistrict')}
-            />
-          </div>
-        )}
+      <Card className="p-6 mb-6 grid gap-6 md:grid-cols-2">
+        {/* First District Selector */}
+        <div>
+          <h2 className="text-lg font-semibold mb-2">
+            {t('selectFirstDistrict') || 'Select First District'}
+          </h2>
+          <DistrictSelector
+            onSelect={(id) => setDistrict1(id)}
+            placeholder={t('searchDistrict')}
+          />
+        </div>
 
-        {district1 && !district2 && (
-          <div>
-            <h2 className="text-lg font-medium mb-2 mt-4">
-              {t('selectSecondDistrict') || 'Select Second District'}
-            </h2>
-            <DistrictSelector
-              onSelect={(id) => setDistrict2(id)}
-              exclude={[district1]}
-              placeholder={t('searchDistrict')}
-            />
-          </div>
-        )}
+        {/* Second District Selector */}
+        <div className={`${!district1 ? 'opacity-50 pointer-events-none' : ''}`}> 
+          <h2 className="text-lg font-semibold mb-2">
+            {t('selectSecondDistrict') || 'Select Second District'}
+          </h2>
+          <DistrictSelector
+            onSelect={(id) => setDistrict2(id)}
+            exclude={[district1]}
+            placeholder={t('searchDistrict')}
+          />
+        </div>
       </Card>
 
       {district1 && district2 && (

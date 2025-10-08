@@ -23,9 +23,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ text, lang, className 
       className={className}
     >
       {isSpeaking ? (
-        <VolumeX className="w-5 h-5 text-gray-600" />
+        <VolumeX className="w-5 h-5 text-current" />
       ) : (
-        <Volume2 className="w-5 h-5 text-gray-600" />
+        <Volume2 className="w-5 h-5 text-current" />
       )}
     </button>
   );

@@ -54,15 +54,37 @@ export const ComparisonChart: React.FC<ComparisonChartProps> = ({ districtName }
       <h2 className="text-xl font-semibold mb-6">
         {t('comparison') || 'Comparison with Averages'}
       </h2>
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="personDays" fill="#3b82f6" name={t('personDays')} />
-          <Bar dataKey="jobCards" fill="#22c55e" name={t('jobCards')} />
+      <ResponsiveContainer width="100%" height={350}>
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+          barCategoryGap="30%"
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+          <XAxis
+            dataKey="name"
+            tick={{ fill: '#6b7280', fontSize: 12 }}
+          />
+          <YAxis tick={{ fill: '#6b7280', fontSize: 12 }} />
+          <Tooltip
+            contentStyle={{ backgroundColor: '#fff', borderRadius: 8, borderColor: '#ddd' }}
+            cursor={{ fill: 'rgba(200,200,200,0.1)' }}
+          />
+          <Legend verticalAlign="top" align="right" wrapperStyle={{ paddingBottom: 10 }} />
+          <Bar
+            dataKey="personDays"
+            fill="#3b82f6"
+            name={t('personDays')}
+            radius={[6, 6, 0, 0]}
+            barSize={40}
+          />
+          <Bar
+            dataKey="jobCards"
+            fill="#22c55e"
+            name={t('jobCards')}
+            radius={[6, 6, 0, 0]}
+            barSize={40}
+          />
         </BarChart>
       </ResponsiveContainer>
     </Card>
