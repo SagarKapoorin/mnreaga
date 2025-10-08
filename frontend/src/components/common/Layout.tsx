@@ -12,15 +12,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="text-3xl">🇮🇳</div>
+      <header className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
+        <div className="container mx-auto px-4 py-5 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="text-4xl animate-pulse">🇮🇳</div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+              <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
                 {t('appTitle')}
               </h1>
-              <p className="text-xs md:text-sm text-gray-600">
+              <p className="text-xs md:text-sm text-gray-600 font-medium">
                 {t('appSubtitle')}
               </p>
             </div>
@@ -35,39 +35,43 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white mt-20">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div>
-              <h3 className="font-semibold mb-3">{t('aboutMGNREGA')}</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-bold text-lg mb-4 text-gray-100">{t('aboutMGNREGA')}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
                 {t('footerDescription')}
               </p>
             </div>
             <div>
-              <h3 className="font-semibold mb-3">{t('quickLinks')}</h3>
-              <ul className="space-y-2 text-sm">
+              <h3 className="font-bold text-lg mb-4 text-gray-100">{t('quickLinks')}</h3>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="https://nrega.nic.in" target="_blank" rel="noopener noreferrer">
+                  <a href="https://nrega.nic.in" target="_blank" rel="noopener noreferrer"
+                     className="text-gray-300 hover:text-primary-400 transition-colors duration-200 flex items-center group">
+                    <span className="mr-2 group-hover:mr-3 transition-all">→</span>
                     Official MGNREGA Website
                   </a>
                 </li>
                 <li>
-                  <a href="https://data.gov.in" target="_blank" rel="noopener noreferrer">
+                  <a href="https://data.gov.in" target="_blank" rel="noopener noreferrer"
+                     className="text-gray-300 hover:text-primary-400 transition-colors duration-200 flex items-center group">
+                    <span className="mr-2 group-hover:mr-3 transition-all">→</span>
                     Open Government Data
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-3">{t('contact')}</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-bold text-lg mb-4 text-gray-100">{t('contact')}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
                 {t('helplineText')}
               </p>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-            © 2025 MGNREGA Dashboard. Data sourced from data.gov.in
+          <div className="border-t border-gray-700 mt-10 pt-8 text-center text-sm text-gray-400">
+            <p>© 2025 MGNREGA Dashboard. Data sourced from data.gov.in</p>
           </div>
         </div>
       </footer>

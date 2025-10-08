@@ -63,19 +63,19 @@ const Dashboard: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-12 animate-fade-in">
         <div className="flex items-center space-x-4">
           <button
             onClick={() => navigate('/')}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-3 hover:bg-gradient-to-r hover:from-primary-100 hover:to-blue-100 rounded-xl transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-6 h-6 text-gray-700" />
           </button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
               {districtData.districtName}
             </h1>
-            <p className="text-gray-600">{districtData.stateName}</p>
+            <p className="text-gray-700 font-medium mt-1">{districtData.stateName}</p>
           </div>
         </div>
         <button
