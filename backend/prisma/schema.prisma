@@ -1,0 +1,38 @@
+// Prisma schema for MGNREGA Dashboard backend
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model District {
+  id                  String               @id @default(uuid())
+  districtName        String
+  stateName           String
+  stateCode           String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  monthlyPerformances MonthlyPerformance[]
+
+  @@unique([stateCode, districtName])
+  @@index([stateCode])
+}
+
+model MonthlyPerformance {
+  id          String   @id @default(uuid())
+  district    District @relation(fields: [districtId], references: [id])
+  districtId  String
+  year        Int
+  month       Int
+  metrics     Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([districtId, year, month])
+  @@index([districtId, year, month])
+  @@index([year, month])
+}
