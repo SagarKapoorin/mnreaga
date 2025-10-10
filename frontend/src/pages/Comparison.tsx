@@ -11,16 +11,13 @@ const Comparison: React.FC = () => {
   const { t } = useTranslation();
   const [district1, setDistrict1] = useState<string>('');
   const [district2, setDistrict2] = useState<string>('');
-  const [district3, setDistrict3] = useState<string>('');
 
   const { data: data1, isLoading: loading1 } = useDistrictData(district1, !!district1);
   const { data: data2, isLoading: loading2 } = useDistrictData(district2, !!district2);
-  const { data: data3, isLoading: loading3 } = useDistrictData(district3, !!district3);
 
   const districts = [
     { id: district1, data: data1, loading: loading1 },
     { id: district2, data: data2, loading: loading2 },
-    { id: district3, data: data3, loading: loading3 },
   ].filter(d => d.id && d.data);
 
   const calculatePercentageDiff = (value1: number, value2: number) => {
@@ -52,32 +49,32 @@ const Comparison: React.FC = () => {
       <h1 className="text-3xl font-bold mb-6 flex items-center">
         {t('compareDistricts') || 'Compare Districts'}
         <InfoTooltip
-          text={t('comparisonDesc') || 'Select up to 3 districts to compare their MGNREGA performance'}
+          text={t('comparisonDesc') || 'Select 2 districts to compare their MGNREGA performance'}
           className="ml-2"
         />
       </h1>
 
       <Card className="p-6 mb-6">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <h2 className="text-lg font-semibold mb-2">
-              {t('selectFirstDistrict') || 'Select First District'}
+            <h2 className="text-lg font-semibold mb-3">
+              {t('selectFirstDistrict') || 'District 1'}
             </h2>
             <DistrictSelector
               onSelect={(id) => setDistrict1(id)}
               placeholder={t('searchDistrict')}
             />
             {district1 && data1 && (
-              <div className="mt-3 p-3 bg-blue-50 border-2 border-blue-500 rounded-lg">
-                <p className="text-sm font-semibold text-blue-900">{data1.districtName}</p>
-                <p className="text-xs text-blue-700">{data1.stateName}</p>
+              <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-600 rounded">
+                <p className="text-base font-bold text-blue-900">{data1.districtName}</p>
+                <p className="text-sm text-blue-600">{data1.stateName}</p>
               </div>
             )}
           </div>
 
           <div className={`${!district1 ? 'opacity-50 pointer-events-none' : ''}`}>
-            <h2 className="text-lg font-semibold mb-2">
-              {t('selectSecondDistrict') || 'Select Second District'}
+            <h2 className="text-lg font-semibold mb-3">
+              {t('selectSecondDistrict') || 'District 2'}
             </h2>
             <DistrictSelector
               onSelect={(id) => setDistrict2(id)}
@@ -85,26 +82,9 @@ const Comparison: React.FC = () => {
               placeholder={t('searchDistrict')}
             />
             {district2 && data2 && (
-              <div className="mt-3 p-3 bg-green-50 border-2 border-green-500 rounded-lg">
-                <p className="text-sm font-semibold text-green-900">{data2.districtName}</p>
-                <p className="text-xs text-green-700">{data2.stateName}</p>
-              </div>
-            )}
-          </div>
-
-          <div className={`${!district2 ? 'opacity-50 pointer-events-none' : ''}`}>
-            <h2 className="text-lg font-semibold mb-2">
-              {t('selectThirdDistrict') || 'Select Third District (Optional)'}
-            </h2>
-            <DistrictSelector
-              onSelect={(id) => setDistrict3(id)}
-              exclude={[district1, district2]}
-              placeholder={t('searchDistrict')}
-            />
-            {district3 && data3 && (
-              <div className="mt-3 p-3 bg-amber-50 border-2 border-amber-500 rounded-lg">
-                <p className="text-sm font-semibold text-amber-900">{data3.districtName}</p>
-                <p className="text-xs text-amber-700">{data3.stateName}</p>
+              <div className="mt-4 p-4 bg-green-50 border-l-4 border-green-600 rounded">
+                <p className="text-base font-bold text-green-900">{data2.districtName}</p>
+                <p className="text-sm text-green-600">{data2.stateName}</p>
               </div>
             )}
           </div>
@@ -121,14 +101,13 @@ const Comparison: React.FC = () => {
               {districts.map((d, idx) => {
                 const best = getBestPerformer('employment');
                 const isBest = best?.id === d.id;
-                const colors = ['border-blue-500 bg-blue-50', 'border-green-500 bg-green-50', 'border-amber-500 bg-amber-50'];
+                const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
-                  <div key={d.id} className={`mb-2 p-3 rounded-lg border-2 ${colors[idx]} ${isBest ? 'ring-2 ring-yellow-400' : ''}`}>
-                    <p className="text-xs font-medium text-gray-700">{d.data?.districtName}</p>
-                    <p className="text-lg font-bold text-gray-900">
+                  <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
+                    <p className="text-xs font-medium opacity-80">{d.data?.districtName}</p>
+                    <p className="text-xl font-bold">
                       {formatNumber(d.data?.employmentProvided || 0)}
                     </p>
-                    {isBest && <span className="text-xs text-yellow-700 font-semibold">🏆 Best</span>}
                   </div>
                 );
               })}
@@ -139,14 +118,13 @@ const Comparison: React.FC = () => {
               {districts.map((d, idx) => {
                 const best = getBestPerformer('personDays');
                 const isBest = best?.id === d.id;
-                const colors = ['border-blue-500 bg-blue-50', 'border-green-500 bg-green-50', 'border-amber-500 bg-amber-50'];
+                const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
-                  <div key={d.id} className={`mb-2 p-3 rounded-lg border-2 ${colors[idx]} ${isBest ? 'ring-2 ring-yellow-400' : ''}`}>
-                    <p className="text-xs font-medium text-gray-700">{d.data?.districtName}</p>
-                    <p className="text-lg font-bold text-gray-900">
+                  <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
+                    <p className="text-xs font-medium opacity-80">{d.data?.districtName}</p>
+                    <p className="text-xl font-bold">
                       {formatNumber(d.data?.personDaysGenerated || 0)}
                     </p>
-                    {isBest && <span className="text-xs text-yellow-700 font-semibold">🏆 Best</span>}
                   </div>
                 );
               })}
@@ -157,14 +135,13 @@ const Comparison: React.FC = () => {
               {districts.map((d, idx) => {
                 const best = getBestPerformer('avgDays');
                 const isBest = best?.id === d.id;
-                const colors = ['border-blue-500 bg-blue-50', 'border-green-500 bg-green-50', 'border-amber-500 bg-amber-50'];
+                const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
-                  <div key={d.id} className={`mb-2 p-3 rounded-lg border-2 ${colors[idx]} ${isBest ? 'ring-2 ring-yellow-400' : ''}`}>
-                    <p className="text-xs font-medium text-gray-700">{d.data?.districtName}</p>
-                    <p className="text-lg font-bold text-gray-900">
+                  <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
+                    <p className="text-xs font-medium opacity-80">{d.data?.districtName}</p>
+                    <p className="text-xl font-bold">
                       {d.data?.averageDaysPerHousehold.toFixed(1) || 0}
                     </p>
-                    {isBest && <span className="text-xs text-yellow-700 font-semibold">🏆 Best</span>}
                   </div>
                 );
               })}
@@ -175,14 +152,13 @@ const Comparison: React.FC = () => {
               {districts.map((d, idx) => {
                 const best = getBestPerformer('expenditure');
                 const isBest = best?.id === d.id;
-                const colors = ['border-blue-500 bg-blue-50', 'border-green-500 bg-green-50', 'border-amber-500 bg-amber-50'];
+                const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
-                  <div key={d.id} className={`mb-2 p-3 rounded-lg border-2 ${colors[idx]} ${isBest ? 'ring-2 ring-yellow-400' : ''}`}>
-                    <p className="text-xs font-medium text-gray-700">{d.data?.districtName}</p>
-                    <p className="text-lg font-bold text-gray-900">
+                  <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
+                    <p className="text-xs font-medium opacity-80">{d.data?.districtName}</p>
+                    <p className="text-xl font-bold">
                       {formatCurrency(d.data?.totalExpenditureCrores || 0)}
                     </p>
-                    {isBest && <span className="text-xs text-yellow-700 font-semibold">🏆 Best</span>}
                   </div>
                 );
               })}
@@ -204,12 +180,6 @@ const Comparison: React.FC = () => {
                       <span className="text-sm text-gray-600">{data2.districtName}:</span>
                       <span className="font-bold">{((data2.employmentProvided / data2.jobCardsIssued) * 100).toFixed(1)}%</span>
                     </div>
-                    {data3 && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">{data3.districtName}:</span>
-                        <span className="font-bold">{((data3.employmentProvided / data3.jobCardsIssued) * 100).toFixed(1)}%</span>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -224,12 +194,6 @@ const Comparison: React.FC = () => {
                       <span className="text-sm text-gray-600">{data2.districtName}:</span>
                       <span className="font-bold">{((data2.womenWorkers / data2.employmentProvided) * 100).toFixed(1)}%</span>
                     </div>
-                    {data3 && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">{data3.districtName}:</span>
-                        <span className="font-bold">{((data3.womenWorkers / data3.employmentProvided) * 100).toFixed(1)}%</span>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -244,12 +208,6 @@ const Comparison: React.FC = () => {
                       <span className="text-sm text-gray-600">{data2.districtName}:</span>
                       <span className="font-bold">{((data2.worksCompleted / (data2.worksCompleted + data2.worksInProgress)) * 100).toFixed(1)}%</span>
                     </div>
-                    {data3 && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">{data3.districtName}:</span>
-                        <span className="font-bold">{((data3.worksCompleted / (data3.worksCompleted + data3.worksInProgress)) * 100).toFixed(1)}%</span>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -264,12 +222,6 @@ const Comparison: React.FC = () => {
                       <span className="text-sm text-gray-600">{data2.districtName}:</span>
                       <span className="font-bold">{(data2.wageExpenditureCrores / data2.materialExpenditureCrores).toFixed(2)}</span>
                     </div>
-                    {data3 && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">{data3.districtName}:</span>
-                        <span className="font-bold">{(data3.wageExpenditureCrores / data3.materialExpenditureCrores).toFixed(2)}</span>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
