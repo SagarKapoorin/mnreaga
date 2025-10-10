@@ -20,29 +20,6 @@ const Comparison: React.FC = () => {
     { id: district2, data: data2, loading: loading2 },
   ].filter(d => d.id && d.data);
 
-  const calculatePercentageDiff = (value1: number, value2: number) => {
-    if (value2 === 0) return 0;
-    return ((value1 - value2) / value2) * 100;
-  };
-
-  const getBestPerformer = (metric: 'personDays' | 'employment' | 'avgDays' | 'expenditure') => {
-    if (districts.length < 2) return null;
-
-    const getValue = (d: typeof districts[0]) => {
-      if (!d.data) return 0;
-      switch (metric) {
-        case 'personDays': return d.data.personDaysGenerated;
-        case 'employment': return d.data.employmentProvided;
-        case 'avgDays': return d.data.averageDaysPerHousehold;
-        case 'expenditure': return d.data.totalExpenditureCrores;
-        default: return 0;
-      }
-    };
-
-    return districts.reduce((best, current) =>
-      getValue(current) > getValue(best) ? current : best
-    );
-  };
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
@@ -99,8 +76,6 @@ const Comparison: React.FC = () => {
             <Card className="p-5">
               <h3 className="text-sm font-semibold text-gray-600 mb-3">Employment Generation</h3>
               {districts.map((d, idx) => {
-                const best = getBestPerformer('employment');
-                const isBest = best?.id === d.id;
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
                   <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
@@ -116,8 +91,6 @@ const Comparison: React.FC = () => {
             <Card className="p-5">
               <h3 className="text-sm font-semibold text-gray-600 mb-3">Person Days Generated</h3>
               {districts.map((d, idx) => {
-                const best = getBestPerformer('personDays');
-                const isBest = best?.id === d.id;
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
                   <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
@@ -133,8 +106,6 @@ const Comparison: React.FC = () => {
             <Card className="p-5">
               <h3 className="text-sm font-semibold text-gray-600 mb-3">Avg Days/Household</h3>
               {districts.map((d, idx) => {
-                const best = getBestPerformer('avgDays');
-                const isBest = best?.id === d.id;
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
                   <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
@@ -147,11 +118,9 @@ const Comparison: React.FC = () => {
               })}
             </Card>
 
-            <Card className="p-5">
+            <Card className="p-5 min-w-[286px]">
               <h3 className="text-sm font-semibold text-gray-600 mb-3">Total Expenditure</h3>
               {districts.map((d, idx) => {
-                const best = getBestPerformer('expenditure');
-                const isBest = best?.id === d.id;
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
                   <div key={d.id} className={`mb-2 p-3 rounded ${colors[idx]}`}>
