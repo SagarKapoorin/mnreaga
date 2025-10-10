@@ -6,7 +6,8 @@ import type { District } from '@typings/district.types';
 import { Search } from 'lucide-react';
 
 interface DistrictSelectorProps {
-  onSelect: (districtId: string) => void;
+  // Called with the selected district name
+  onSelect: (districtName: string) => void;
   exclude?: string[];
   placeholder?: string;
 }
@@ -61,7 +62,7 @@ export const DistrictSelector: React.FC<DistrictSelectorProps> = ({
         {filtered.map((d) => (
           <button
             key={d.id}
-            onClick={() => onSelect(d.id)}
+            onClick={() => onSelect(d.name)}
             className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
           >
             <span className="text-lg">{d.name}</span>

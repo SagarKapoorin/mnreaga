@@ -45,6 +45,23 @@ const Dashboard: React.FC = () => {
     );
   }
 
+  // Prepare metric subtitles, guarding against undefined values
+  const jobCardsSubtitle = districtData?.jobCardsWithEmployment != null
+    ? `${districtData.jobCardsWithEmployment} with employment`
+    : '';
+  const avgDays = districtData?.averageDaysPerHousehold;
+  const avgSubtitle = avgDays != null
+    ? `Avg: ${avgDays.toFixed(1)} days/household`
+    : '';
+  const wageExp = districtData?.wageExpenditureCrores;
+  const wageSubtitle = wageExp != null
+    ? `Wages: ₹${wageExp} Cr`
+    : '';
+  const worksInProgress = districtData?.worksInProgress;
+  const worksSubtitle = worksInProgress != null
+    ? `${worksInProgress} in progress`
+    : '';
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -94,35 +111,32 @@ const Dashboard: React.FC = () => {
         <PerformanceCard
           icon="👥"
           title={t('jobCardsIssued') || 'Job Cards Issued'}
-          value={districtData.jobCardsIssued}
-          subtitle={`${districtData.jobCardsWithEmployment} with employment`}
+          value={districtData.jobCardsIssued || 0}
+          subtitle={jobCardsSubtitle}
           colorClass="bg-blue-50 border-blue-500"
           description={t('jobCardsDesc') || 'Number of families registered for MGNREGA work'}
         />
-
         <PerformanceCard
           icon="📅"
           title={t('personDays') || 'Person Days Generated'}
-          value={districtData.personDaysGenerated}
-          subtitle={`Avg: ${districtData.averageDaysPerHousehold.toFixed(1)} days/household`}
+          value={districtData.personDaysGenerated || 0}
+          subtitle={avgSubtitle}
           colorClass="bg-green-50 border-green-500"
           description={t('personDaysDesc') || 'Total days of employment provided'}
         />
-
         <PerformanceCard
           icon="💰"
           title={t('totalExpenditure') || 'Total Expenditure'}
-          value={`₹${districtData.totalExpenditureCrores} Cr`}
-          subtitle={`Wages: ₹${districtData.wageExpenditureCrores} Cr`}
+          value={districtData.totalExpenditureCrores || 0}
+          subtitle={wageSubtitle}
           colorClass="bg-purple-50 border-purple-500"
           description={t('expenditureDesc') || 'Total money spent on MGNREGA in this district'}
         />
-
         <PerformanceCard
           icon="🏗️"
           title={t('worksCompleted') || 'Works Completed'}
-          value={districtData.worksCompleted}
-          subtitle={`${districtData.worksInProgress} in progress`}
+          value={districtData.worksCompleted || 0}
+          subtitle={worksSubtitle}
           colorClass="bg-orange-50 border-orange-500"
           description={t('worksDesc') || 'Projects completed under MGNREGA'}
         />
@@ -133,32 +147,44 @@ const Dashboard: React.FC = () => {
         <MetricCard
           icon="👩"
           title={t('womenWorkers') || 'Women Workers'}
-          value={districtData.womenWorkers}
-          percentage={(districtData.womenWorkers / districtData.employmentProvided * 100).toFixed(1)}
+          value={districtData.womenWorkers || 0}
+          percentage={
+            districtData.employmentProvided
+              ? ((districtData.womenWorkers || 0) / districtData.employmentProvided * 100).toFixed(1)
+              : '0'
+          }
           color="pink"
         />
         <MetricCard
           icon="⚖️"
           title={t('scWorkers') || 'SC Workers'}
-          value={districtData.scWorkers}
-          percentage={(districtData.scWorkers / districtData.employmentProvided * 100).toFixed(1)}
+          value={districtData.scWorkers || 0}
+          percentage={
+            districtData.employmentProvided
+              ? ((districtData.scWorkers || 0) / districtData.employmentProvided * 100).toFixed(1)
+              : '0'
+          }
           color="indigo"
         />
         <MetricCard
           icon="🌳"
           title={t('stWorkers') || 'ST Workers'}
-          value={districtData.stWorkers}
-          percentage={(districtData.stWorkers / districtData.employmentProvided * 100).toFixed(1)}
+          value={districtData.stWorkers || 0}
+          percentage={
+            districtData.employmentProvided
+              ? ((districtData.stWorkers || 0) / districtData.employmentProvided * 100).toFixed(1)
+              : '0'
+          }
           color="teal"
         />
       </div>
 
       {/* Historical Trend */}
-      {historicalData && historicalData.records.length > 0 && (
+      {historicalData && historicalData.records?.length > 0 && (
         <TrendChart data={historicalData.records} />
       )}
       {/* Historical Data Table */}
-      {historicalData && historicalData.records.length > 0 && (
+      {historicalData && historicalData.records?.length > 0 && (
         <HistoricalData data={historicalData} />
       )}
 

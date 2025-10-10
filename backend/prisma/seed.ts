@@ -121,10 +121,23 @@ async function main() {
       const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
       const year = d.getFullYear();
       const month = d.getMonth() + 1;
-      // Generate sample metrics
+      // Generate sample metrics for all required fields
+      const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
       const metrics = {
-        workCompleted: Math.floor(Math.random() * 4001) + 1000,
-        wagesPaid: Math.floor(Math.random() * 40001) + 10000
+        Total_No_of_Active_Job_Cards: rand(5000, 20000),
+        Total_No_of_JobCards_issued: rand(5000, 20000),
+        Total_Households_Worked: rand(4000, 18000),
+        Total_Individuals_Worked: rand(10000, 50000),
+        Persondays_of_Central_Liability_so_far: rand(20000, 100000),
+        Average_days_of_employment_provided_per_Household: rand(10, 100),
+        Total_Exp: rand(50, 200),
+        Wages: rand(30, 150),
+        Material_and_skilled_Wages: rand(10, 60),
+        Number_of_Completed_Works: rand(100, 1000),
+        Number_of_Ongoing_Works: rand(50, 800),
+        SC_workers_against_active_workers: rand(500, 5000),
+        ST_workers_against_active_workers: rand(300, 3000),
+        Women_Persondays: rand(10000, 80000),
       };
       await prisma.monthlyPerformance.upsert({
         where: {

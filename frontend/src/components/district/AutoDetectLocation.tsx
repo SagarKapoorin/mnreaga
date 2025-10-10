@@ -12,12 +12,24 @@ export const AutoDetectLocation: React.FC<AutoDetectLocationProps> = ({
 }) => {
   const { t } = useTranslation();
   const { location, loading, error, requestLocation } = useGeolocation();
+  const [fallbackMessage, setFallbackMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (location?.district) {
-      onDistrictDetected(location.district);
+    if (location) {
+      const { district, state } = location;
+      // Only accept districts in Uttar Pradesh
+      if (state === 'Uttar Pradesh') {
+        onDistrictDetected(district || '');
+      } else {
+        // Default to Agra if outside UP
+        setFallbackMessage(
+          t('locationOutsideUP', { state }) ||
+            `Detected state ${state}, defaulting to Agra.`
+        );
+        onDistrictDetected('Agra');
+      }
     }
-  }, [location, onDistrictDetected]);
+  }, [location, onDistrictDetected, t]);
 
   return (
     <div>
@@ -54,6 +66,11 @@ export const AutoDetectLocation: React.FC<AutoDetectLocationProps> = ({
       {location && (
         <p className="mt-2 text-sm text-success-600 text-center">
           ✓ {t('locationDetected') || 'Location detected'}: {location.district}, {location.state}
+        </p>
+      )}
+      {fallbackMessage && (
+        <p className="mt-2 text-sm text-warning-600 text-center">
+          {fallbackMessage}
         </p>
       )}
     </div>

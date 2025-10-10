@@ -9,3 +9,276 @@ paths:
       responses:
         '200':
           description: OK
+  /api/districts:
+    get:
+      summary: List all districts
+      responses:
+        '200':
+          description: List of districts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistrictListResponse'
+  /api/districts/current:
+    get:
+      summary: Latest performance for all districts
+      responses:
+        '200':
+          description: Current performance data for all districts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentResponse'
+  /api/districts/{name}:
+    get:
+      summary: Get latest performance for a district
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: District name (URL-encoded)
+      responses:
+        '200':
+          description: Performance data for the district
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistrictResponse'
+        '404':
+          description: District not found
+  /api/districts/{name}/history:
+    get:
+      summary: Historical performance data for a district
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: District name
+        - name: months
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 120
+            default: 12
+          description: Number of months to return
+      responses:
+        '200':
+          description: Historical performance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalDataResponse'
+        '404':
+          description: District not found
+  /api/districts/{name}/compare:
+    get:
+      summary: Compare district performance with state and national averages
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: District name
+      responses:
+        '200':
+          description: Comparison data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComparisonResponse'
+        '404':
+          description: District not found or no performance data
+  /api/states:
+    get:
+      summary: List all states
+      responses:
+        '200':
+          description: List of states
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatesListResponse'
+  /api/states/{stateCode}/districts:
+    get:
+      summary: List districts for a specific state
+      parameters:
+        - name: stateCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: State code
+      responses:
+        '200':
+          description: List of district names
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistrictNamesResponse'
+        '404':
+          description: State not found
+components:
+  schemas:
+    District:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+      required: [id, name, state, stateCode]
+    DistrictListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/District'
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    MonthlyPerformance:
+      type: object
+      properties:
+        month:
+          type: string
+        year:
+          type: integer
+        districtName:
+          type: string
+        stateName:
+          type: string
+        jobCardsIssued:
+          type: number
+        jobCardsWithEmployment:
+          type: number
+        employmentProvided:
+          type: number
+        personDaysGenerated:
+          type: number
+        averageDaysPerHousehold:
+          type: number
+        totalExpenditureCrores:
+          type: number
+        wageExpenditureCrores:
+          type: number
+        materialExpenditureCrores:
+          type: number
+        worksCompleted:
+          type: number
+        worksInProgress:
+          type: number
+        scWorkers:
+          type: number
+        stWorkers:
+          type: number
+        womenWorkers:
+          type: number
+        performanceScore:
+          type: number
+          nullable: true
+      required: [month, year, districtName, stateName, jobCardsIssued, jobCardsWithEmployment, employmentProvided, personDaysGenerated, averageDaysPerHousehold, totalExpenditureCrores, wageExpenditureCrores, materialExpenditureCrores, worksCompleted, worksInProgress, scWorkers, stWorkers, womenWorkers]
+    CurrentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonthlyPerformance'
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    DistrictResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/MonthlyPerformance'
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    HistoricalDataResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            records:
+              type: array
+              items:
+                $ref: '#/components/schemas/MonthlyPerformance'
+            startDate:
+              type: string
+              format: date
+            endDate:
+              type: string
+              format: date
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    ComparisonResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            district:
+              $ref: '#/components/schemas/MonthlyPerformance'
+            stateAverage:
+              $ref: '#/components/schemas/MonthlyPerformance'
+            nationalAverage:
+              $ref: '#/components/schemas/MonthlyPerformance'
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    State:
+      type: object
+      properties:
+        stateCode:
+          type: string
+        stateName:
+          type: string
+      required: [stateCode, stateName]
+    StatesListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/State'
+        timestamp:
+          type: string
+      required: [success, data, timestamp]
+    DistrictNamesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            type: string
+        timestamp:
+          type: string
+      required: [success, data, timestamp]

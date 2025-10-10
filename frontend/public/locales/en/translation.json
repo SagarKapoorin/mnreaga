@@ -12,6 +12,7 @@
   "selectDistrict": "Select District",
   "searchDistrict": "Search district...",
   "loading": "Loading...",
+  "locationOutsideUP": "Detected state {{state}}, defaulting to Agra",
   "jobCardsIssued": "Job Cards Issued",
   "jobCardsDesc": "Number of families registered for MGNREGA work",
   "personDays": "Person Days Generated",
