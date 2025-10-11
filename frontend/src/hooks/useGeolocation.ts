@@ -39,10 +39,10 @@ export const useGeolocation = (): GeolocationState => {
         setError(err.message || 'Location permission denied');
         setLoading(false);
       },
-      {
+        {
         enableHighAccuracy: true,
         timeout: 10000,
-        maximumAge: 300000, // 5 minutes
+        maximumAge: 300000,
       }
     );
   };

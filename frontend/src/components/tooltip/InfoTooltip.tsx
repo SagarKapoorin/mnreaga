@@ -2,11 +2,8 @@ import React from 'react';
 import { Info } from 'lucide-react';
 
 interface InfoTooltipProps {
-  /** Tooltip message */
   text: string;
-  /** Optional custom trigger element */
   children?: React.ReactNode;
-  /** Additional wrapper classes */
   className?: string;
 }
 

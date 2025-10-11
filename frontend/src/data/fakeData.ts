@@ -1,14 +1,12 @@
-import type { MonthlyPerformance, HistoricalData } from '@typings/performance.types';
+import type { MonthlyPerformance, HistoricalDataType } from '@typings/performance.types';
 import type { District } from '@typings/district.types';
 
-// Fake district list for development
 export const fakeDistricts: District[] = [
   { id: '0202', name: 'Vizianagaram', state: 'Andhra Pradesh', stateCode: '02' },
   { id: '0204', name: 'East Godavari', state: 'Andhra Pradesh', stateCode: '02' },
   { id: '0219', name: 'Bapatla', state: 'Andhra Pradesh', stateCode: '02' },
 ];
 
-// Fake current performance per district
 export const fakeCurrent: Record<string, MonthlyPerformance> = {
   '0202': {
     month: 'Dec',
@@ -78,8 +76,7 @@ export const fakeCurrent: Record<string, MonthlyPerformance> = {
   },
 };
 
-// Fake historical data per district (last 6 months)
-export const fakeHistory: Record<string, HistoricalData> = {
+export const fakeHistory: Record<string, HistoricalDataType> = {
   '0202': {
     records: [
       { ...fakeCurrent['0202'], month: 'Nov', jobCardsIssued: 620000, personDaysGenerated: 720000, performanceScore: 76 },
@@ -119,7 +116,6 @@ export const fakeHistory: Record<string, HistoricalData> = {
 };
 import type { ComparisonData } from '@typings/performance.types';
 
-// Fake comparison data per district
 export const fakeComparison: Record<string, ComparisonData> = {
   '0202': {
     district: fakeCurrent['0202'],

@@ -17,11 +17,9 @@ export const AutoDetectLocation: React.FC<AutoDetectLocationProps> = ({
   React.useEffect(() => {
     if (location) {
       const { district, state } = location;
-      // Only accept districts in Uttar Pradesh
       if (state === 'Uttar Pradesh') {
         onDistrictDetected(district || '');
       } else {
-        // Default to Agra if outside UP
         setFallbackMessage(
           t('locationOutsideUP', { state }) ||
             `Detected state ${state}, defaulting to Agra.`

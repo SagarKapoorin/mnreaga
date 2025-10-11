@@ -16,7 +16,6 @@ export const LeaderboardTable: React.FC = () => {
     return null;
   }
 
-  // Sort by performanceScore descending (higher is better)
   const sorted = [...data].sort((a, b) => {
     const sa = a.performanceScore ?? 0;
     const sb = b.performanceScore ?? 0;

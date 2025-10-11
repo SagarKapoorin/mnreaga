@@ -45,7 +45,6 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  // Prepare metric subtitles, guarding against undefined values
   const jobCardsSubtitle = districtData?.jobCardsWithEmployment != null
     ? `${districtData.jobCardsWithEmployment} with employment`
     : '';
@@ -81,7 +80,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      {/* Header */}
       <div className="flex items-center justify-between mb-12 animate-fade-in">
         <div className="flex items-center space-x-4">
           <button
@@ -106,7 +104,6 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 
-      {/* Performance Overview */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
         <PerformanceCard
           icon="👥"
@@ -142,7 +139,6 @@ const Dashboard: React.FC = () => {
         />
       </div>
 
-      {/* Social Composition */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         <MetricCard
           icon="👩"
@@ -179,19 +175,15 @@ const Dashboard: React.FC = () => {
         />
       </div>
 
-      {/* Historical Trend */}
       {historicalData && historicalData.records?.length > 0 && (
         <TrendChart data={historicalData.records} />
       )}
-      {/* Historical Data Table */}
       {historicalData && historicalData.records?.length > 0 && (
         <HistoricalData data={historicalData} />
       )}
 
-      {/* District Leaderboard */}
       <LeaderboardTable />
 
-      {/* Comparison with State/National */}
       <ComparisonChart districtName={districtName || ''} />
     </div>
   );

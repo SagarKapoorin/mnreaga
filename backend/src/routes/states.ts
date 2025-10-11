@@ -6,8 +6,7 @@ import { cache } from '../utils/cache';
 import { wrap } from '../utils/asyncHandler';
 const router = Router();
 
-// GET /api/states
-router.get('/', cache(21600), wrap(async (req, res, next) => {
+router.get('/', cache(1209600), wrap(async (req, res, next) => {
   try {
     const states = await prisma.district.findMany({
       distinct: ['stateCode'],
@@ -19,8 +18,7 @@ router.get('/', cache(21600), wrap(async (req, res, next) => {
   }
 }));
 
-// GET /api/states/:stateCode/districts
-router.get('/:stateCode/districts', cache(3600), wrap(async (req, res, next) => {
+router.get('/:stateCode/districts', cache(1209600), wrap(async (req, res, next) => {
   try {
     const { stateCode } = req.params;
     const districts = await prisma.district.findMany({

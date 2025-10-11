@@ -49,7 +49,7 @@ export const API_CONFIG = {
 } as const;
 
 export const CACHE_TIMES = {
-  DISTRICT_DATA: 30 * 60 * 1000, // 30 minutes
-  HISTORICAL_DATA: 60 * 60 * 1000, // 1 hour
-  STATES_LIST: 24 * 60 * 60 * 1000, // 24 hours
+  DISTRICT_DATA: 30 * 60 * 1000,
+  HISTORICAL_DATA: 60 * 60 * 1000,
+  STATES_LIST: 24 * 60 * 60 * 1000,
 } as const;

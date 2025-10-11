@@ -6,7 +6,6 @@ import type { District } from '@typings/district.types';
 import { Search } from 'lucide-react';
 
 interface DistrictSelectorProps {
-  // Called with the selected district name
   onSelect: (districtName: string) => void;
   exclude?: string[];
   placeholder?: string;

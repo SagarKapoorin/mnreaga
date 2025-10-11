@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { HistoricalData } from '@typings/performance.types';
+import type { HistoricalDataType } from '@typings/performance.types';
 import { Card } from '@components/common/Card';
 
 interface HistoricalDataProps {
-  data: HistoricalData;
+  data: HistoricalDataType;
 }
 
 export const HistoricalData: React.FC<HistoricalDataProps> = ({ data }) => {

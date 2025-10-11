@@ -46,7 +46,6 @@ class ApiService {
   }
 
   async get<T>(url: string, params?: Record<string, any>): Promise<T> {
-    // Make API call to backend
     const response = await this.client.get<ApiResponse<T>>(url, { params });
     return response.data.data;
   }

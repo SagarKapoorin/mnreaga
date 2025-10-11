@@ -3,9 +3,6 @@ import { useTextToSpeech } from '@hooks/useTextToSpeech';
 import { Volume2, VolumeX } from 'lucide-react';
 
 interface AudioPlayerProps {
-  /** Text to speak */
-  text: string;
-  /** BCP-47 language code, e.g. 'hi-IN' */
   lang?: string;
   className?: string;
 }

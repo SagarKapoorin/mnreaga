@@ -10,13 +10,11 @@ import { wrap } from '../utils/asyncHandler';
 const prisma = new PrismaClient();
 const router = Router();
 
-// Helper: convert arbitrary value to number (fallback to 0)
 function toNum(v: any): number {
   const n = Number(v);
   return isNaN(n) ? 0 : n;
 }
 
-// Map raw performance record and metrics JSON to flat object
 function mapPerf(
   year: number,
   month: number,
@@ -46,17 +44,15 @@ function mapPerf(
     scWorkers: toNum(metrics['SC_workers_against_active_workers']),
     stWorkers: toNum(metrics['ST_workers_against_active_workers']),
     womenWorkers: toNum(metrics['Women_Persondays']),
-    // Performance score: use provided or fallback to average days per household
     performanceScore: typeof metrics.performanceScore === 'number'
       ? metrics.performanceScore
       : toNum(metrics['Average_days_of_employment_provided_per_Household']),
   };
 }
 
-// GET /api/districts - list all districts
 router.get(
   '/',
-  cache(21600),
+  cache(1209600),
   wrap(async (req, res, next) => {
     try {
       const list = await prisma.district.findMany({
@@ -80,10 +76,9 @@ router.get(
     }
   })
 );
-// GET /api/districts/current - latest performance for all districts
 router.get(
   '/current',
-  cache(1800),
+  cache(172800),
   wrap(async (req, res, next) => {
     try {
       // Find latest year & month across all records
@@ -113,7 +108,7 @@ router.get(
 
 const historyQuerySchema = z.object({ months: z.coerce.number().min(1).max(120).default(12) });
 
-router.get('/:name', cache(1800), wrap(async (req, res, next) => {
+router.get('/:name', cache(172800), wrap(async (req, res, next) => {
   try {
     const name = normalizeDistrictName(req.params.name);
     const district = await prisma.district.findFirst({ where: { districtName: name } });
@@ -144,7 +139,7 @@ router.get('/:name', cache(1800), wrap(async (req, res, next) => {
   }
 }));
 
-router.get('/:name/history', cache(3600), validate(historyQuerySchema, 'query'), wrap(async (req, res, next) => {
+router.get('/:name/history', cache(172800), validate(historyQuerySchema, 'query'), wrap(async (req, res, next) => {
   try {
     const name = normalizeDistrictName(req.params.name);
     const { months } = req.query as any;
@@ -176,8 +171,7 @@ router.get('/:name/history', cache(3600), validate(historyQuerySchema, 'query'),
   }
 }));
 
-// GET /api/districts/:name/compare
-router.get('/:name/compare', cache(21600), wrap(async (req, res, next) => {
+router.get('/:name/compare', cache(172800), wrap(async (req, res, next) => {
   try {
     const name = normalizeDistrictName(req.params.name);
     const district = await prisma.district.findFirst({ where: { districtName: name } });

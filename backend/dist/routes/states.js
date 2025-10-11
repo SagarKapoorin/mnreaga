@@ -6,8 +6,7 @@ const prisma = new client_1.PrismaClient();
 const cache_1 = require("../utils/cache");
 const asyncHandler_1 = require("../utils/asyncHandler");
 const router = (0, express_1.Router)();
-// GET /api/states
-router.get('/', (0, cache_1.cache)(21600), (0, asyncHandler_1.wrap)(async (req, res, next) => {
+router.get('/', (0, cache_1.cache)(1209600), (0, asyncHandler_1.wrap)(async (req, res, next) => {
     try {
         const states = await prisma.district.findMany({
             distinct: ['stateCode'],
@@ -19,8 +18,7 @@ router.get('/', (0, cache_1.cache)(21600), (0, asyncHandler_1.wrap)(async (req, 
         next(err);
     }
 }));
-// GET /api/states/:stateCode/districts
-router.get('/:stateCode/districts', (0, cache_1.cache)(3600), (0, asyncHandler_1.wrap)(async (req, res, next) => {
+router.get('/:stateCode/districts', (0, cache_1.cache)(1209600), (0, asyncHandler_1.wrap)(async (req, res, next) => {
     try {
         const { stateCode } = req.params;
         const districts = await prisma.district.findMany({

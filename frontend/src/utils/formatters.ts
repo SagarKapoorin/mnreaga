@@ -7,7 +7,7 @@ export const formatCurrency = (amount: number): string => {
     style: 'currency',
     currency: 'INR',
     maximumFractionDigits: 2,
-  }).format(amount * 10000000); // Convert crores to rupees
+  }).format(amount * 10000000);
 };
 
 export const formatPercentage = (value: number): string => {
