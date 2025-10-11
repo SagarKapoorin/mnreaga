@@ -18,14 +18,10 @@ const About: React.FC = () => {
             {t('whatIsMGNREGA')}
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            The Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA) is an Indian labour law
-            and social security measure that guarantees the ‘right to work’ by providing at least 100 days
-            of wage employment in a financial year to every rural household that volunteers for unskilled
-            manual work.
+            {t('mgnregaDefinition')}
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Enacted on August 25, 2005, MGNREGA is one of the largest work guarantee programmes in the
-            world, covering over 12 crore beneficiaries across rural India.
+            {t('mgnregaBackground')}
           </p>
         </Card>
 
@@ -34,13 +30,13 @@ const About: React.FC = () => {
             {t('aboutDashboard')}
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            This dashboard visualizes MGNREGA performance data in a user-friendly way. Features include:
+            {t('dashboardFeaturesIntro')}
           </p>
           <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li>Simple and visual representation with icons and color-coding</li>
-            <li>Multilingual support for major Indian languages</li>
-            <li>Audio narration for low-literacy accessibility</li>
-            <li>Data sourced and updated directly from official government portals</li>
+            <li>{t('featureVisual')}</li>
+            <li>{t('featureMultilingual')}</li>
+            <li>{t('featureAudio')}</li>
+            <li>{t('featureDataSource')}</li>
           </ul>
         </Card>
       </div>
@@ -50,7 +46,7 @@ const About: React.FC = () => {
           {t('dataSource')}
         </h2>
         <p className="text-gray-700 leading-relaxed mb-4">
-          All data is fetched from the official Open Government Data (OGD) Platform India (data.gov.in).
+          {t('dataFetchedFromOGD')}
         </p>
         <a
           href="https://data.gov.in"
@@ -58,7 +54,7 @@ const About: React.FC = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
         >
-          Visit data.gov.in
+          {t('visitDataGov')}
           <ExternalLink className="ml-2 w-4 h-4" />
         </a>
       </Card>

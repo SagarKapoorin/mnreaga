@@ -38,7 +38,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   : 'text-white/80 hover:text-white transition-colors'
               }
             >
-              Home
+              {t('navHome')}
             </NavLink>
             <NavLink
               to="/compare"
@@ -48,7 +48,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   : 'text-white/80 hover:text-white transition-colors'
               }
             >
-              Compare
+              {t('navCompare')}
             </NavLink>
             <NavLink
               to="/about"
@@ -58,7 +58,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   : 'text-white/80 hover:text-white transition-colors'
               }
             >
-              About
+              {t('navAbout')}
             </NavLink>
           </nav>
           {/* Controls: Language + Audio */}
@@ -114,7 +114,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-10 pt-8 text-center text-sm text-gray-400">
-            <p>© 2025 MGNREGA Dashboard. Data sourced from data.gov.in</p>
+            <p>{t('footerCopy')}</p>
           </div>
         </div>
       </footer>

@@ -61,6 +61,26 @@
   "aboutTitle": "MNREGA সম্পর্কে",
   "whatIsMGNREGA": "MNREGA কী?",
   "aboutDashboard": "এই ড্যাশবোর্ড সম্পর্কে",
-  "dataSource": "ডেটা উত্স"
-
+  "dataSource": "ডেটা উত্স",
+   "mgnregaDefinition": "মহাত্মা গান্ধী জাতীয় গ্রামীণ কর্মসংস্থান নিশ্চয়তা আইন (MGNREGA) গ্রামীণ পরিবারগুলিকে বছরে ১০০ দিনের মজুরিভিত্তিক কর্মসংস্থানের নিশ্চয়তা দেয়।",
+  "mgnregaBackground": "২০০৫ সালের ২৫ আগস্ট প্রণীত, MGNREGA বিশ্বের বৃহত্তম কর্মসংস্থান নিশ্চয়তা কর্মসূচিগুলির মধ্যে একটি, যা ১২ কোটিরও বেশি উপভোক্তাকে অন্তর্ভুক্ত করে।",
+  "dashboardFeaturesIntro": "এই ড্যাশবোর্ডটি ব্যবহারবান্ধব উপায়ে MGNREGA-র কর্মদক্ষতার তথ্য প্রদর্শন করে। এর বৈশিষ্ট্যগুলির মধ্যে রয়েছে:",
+  "featureVisual": "আইকন এবং রঙের কোডিং সহ সহজ ও দৃশ্যমান উপস্থাপনা",
+  "featureMultilingual": "প্রধান ভারতীয় ভাষাগুলির জন্য বহুভাষিক সহায়তা",
+  "featureAudio": "স্বল্প সাক্ষরতার ব্যবহারকারীদের জন্য অডিও বর্ণনা",
+  "featureDataSource": "তথ্য সরাসরি সরকারি পোর্টালগুলি থেকে সংগৃহীত এবং নিয়মিত হালনাগাদ করা হয়",
+  "dataFetchedFromOGD": "সমস্ত তথ্য সরকারী ওপেন গভর্নমেন্ট ডাটা প্ল্যাটফর্ম ইন্ডিয়া (data.gov.in) থেকে সংগৃহীত।",
+  "visitDataGov": "data.gov.in ভিজিট করুন",
+  "navHome": "মূল পৃষ্ঠা",
+  "navCompare": "তুলনা করুন",
+  "navAbout": "সম্পর্কে",
+  "footerCopy": "© ২০২৫ MGNREGA ড্যাশবোর্ড। তথ্য উৎস: data.gov.in",
+  "employmentGeneration": "কর্মসংস্থান সৃষ্টি",
+  "personDaysGenerated": "সৃষ্ট ব্যক্তি-দিন",
+  "averageDaysPerHousehold": "প্রতি পরিবারের গড় কর্মদিবস",
+  "performanceInsights": "কর্মদক্ষতার বিশ্লেষণ",
+  "employmentRate": "কর্মসংস্থান হার",
+  "womenWorkersShare": "মহিলা শ্রমিকদের অংশগ্রহণ",
+  "workCompletionRate": "কাজ সম্পূর্ণতার হার",
+  "wageMaterialRatio": "মজুরি ও উপকরণের অনুপাত"
 }

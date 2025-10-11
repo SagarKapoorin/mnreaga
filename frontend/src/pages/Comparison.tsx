@@ -24,7 +24,7 @@ const Comparison: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6 flex items-center">
-        {t('compareDistricts') || 'Compare Districts'}
+        {t('compareDistricts')}
         <InfoTooltip
           text={t('comparisonDesc') || 'Select 2 districts to compare their MGNREGA performance'}
           className="ml-2"
@@ -74,7 +74,7 @@ const Comparison: React.FC = () => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-6">
             <Card className="p-5">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3">Employment Generation</h3>
+          <h3 className="text-sm font-semibold text-gray-600 mb-3">{t('employmentGeneration')}</h3>
               {districts.map((d, idx) => {
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
@@ -89,7 +89,7 @@ const Comparison: React.FC = () => {
             </Card>
 
             <Card className="p-5">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3">Person Days Generated</h3>
+          <h3 className="text-sm font-semibold text-gray-600 mb-3">{t('personDaysGenerated')}</h3>
               {districts.map((d, idx) => {
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
@@ -104,7 +104,7 @@ const Comparison: React.FC = () => {
             </Card>
 
             <Card className="p-5">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3">Avg Days/Household</h3>
+              <h3 className="text-sm font-semibold text-gray-600 mb-3">{t('averageDaysPerHousehold')}</h3>
               {districts.map((d, idx) => {
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
@@ -119,7 +119,7 @@ const Comparison: React.FC = () => {
             </Card>
 
             <Card className="p-5 min-w-[286px]">
-              <h3 className="text-sm font-semibold text-gray-600 mb-3">Total Expenditure</h3>
+              <h3 className="text-sm font-semibold text-gray-600 mb-3">{t('totalExpenditure')}</h3>
               {districts.map((d, idx) => {
                 const colors = ['bg-blue-50 text-blue-900', 'bg-green-50 text-green-900'];
                 return (
@@ -135,11 +135,11 @@ const Comparison: React.FC = () => {
           </div>
 
           {districts.length >= 2 && data1 && data2 && (
-            <Card className="p-6 mt-6">
-              <h2 className="text-xl font-bold mb-4">Performance Insights</h2>
+          <Card className="p-6 mt-6">
+              <h2 className="text-xl font-bold mb-4">{t('performanceInsights')}</h2>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-800 mb-2">Employment Rate</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">{t('employmentRate')}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">{data1.districtName}:</span>
@@ -153,7 +153,7 @@ const Comparison: React.FC = () => {
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-800 mb-2">Women Workers Share</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">{t('womenWorkersShare')}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">{data1.districtName}:</span>
@@ -167,7 +167,7 @@ const Comparison: React.FC = () => {
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-800 mb-2">Work Completion Rate</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">{t('workCompletionRate')}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">{data1.districtName}:</span>
@@ -181,7 +181,7 @@ const Comparison: React.FC = () => {
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-800 mb-2">Wage to Material Ratio</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">{t('wageMaterialRatio')}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">{data1.districtName}:</span>
