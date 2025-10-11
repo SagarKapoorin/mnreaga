@@ -1,0 +1,14 @@
+# Docker ignore to reduce build context size
+# Ignore local node modules and Git metadata
+node_modules/
+.git/
+.gitignore
+# Ignore logs
+npm-debug.log
+*.log
+# Ignore host build output
+dist/
+build/
+# Ignore environment files to bake defaults
+.env
+.env.local

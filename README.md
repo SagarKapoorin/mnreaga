@@ -20,31 +20,26 @@ The repository contains two main components:
 
 ## Local Development
 
-1. Start infrastructure and backend:
+1. Build and start all services (Postgres, Redis, backend, frontend):
 
    ```bash
-   docker-compose up --build
-   ```
+   docker-compose up -d --build
 
-2. In a new terminal, set up the database and backend:
+   # If you make changes to the backend Dockerfile or `prisma/` schema,
+   # rebuild the backend image explicitly:
+   # docker-compose up -d --build backend
+   ```
+   This brings up Postgres, Redis, the backend API (port 5000), and the frontend UI (port 80).
+
+2. Initialize the database (apply migrations and seed data) in the running backend container:
 
    ```bash
-   cd backend
-   npm install
-   npm run prisma:generate
-   npm run prisma:migrate
-   npm run prisma:seed
-   npm run dev
+   # Run migrations (uses `--schema=./prisma/schema.prisma` by default)
+   docker-compose exec backend npm run prisma:migrate
+   docker-compose exec backend npm run prisma:seed
    ```
 
-3. In another terminal, start the frontend (the React dev server will proxy `/api` calls to the backend):
-
-   ```bash
-   cd frontend
-   # Copy .env.example to .env to set REACT_APP_API_URL if needed
-   npm install
-   npm start
-   ```
+3. Open your browser at http://localhost/ (or http://localhost:<PORT>/ if you remapped ports) to access the frontend UI.
 
 Frontend will open at http://localhost:3000 and backend at http://localhost:5000.
 

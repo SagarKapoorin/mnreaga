@@ -23,12 +23,26 @@ services:
     restart: unless-stopped
     env_file:
       - ./backend/.env
+    environment:
+      # Override Redis host in Docker Compose network
+      REDIS_URL: "redis://redis:6379"
+      # Use local Postgres service and disable channel binding
+      DATABASE_URL: "postgresql://user:password@db:5432/mgnrega?sslmode=disable"
     depends_on:
       - db
       - redis
     ports:
       - '5000:5000'
-    command: npm run dev
+    # Run built production server
+    command: npm start
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - '80:80'
 
 volumes:
   db-data:

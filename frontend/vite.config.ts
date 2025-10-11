@@ -8,19 +8,23 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(), // Add this plugin
-    // Optimize images and SVGs at build time
-    viteImagemin({
-      gifsicle: { optimizationLevel: 7 },
-      optipng: { optimizationLevel: 7 },
-      mozjpeg: { quality: 80 },
-      pngquant: { quality: [0.7, 0.9] },
-      svgo: {
-        plugins: [
-          { name: 'removeViewBox' },
-          { name: 'removeDimensions' },
-        ],
-      },
-    }),
+    // Optimize images and SVGs at build time (disabled when SKIP_IMAGEMIN=true)
+    ...(process.env.SKIP_IMAGEMIN === 'true'
+      ? []
+      : [
+          viteImagemin({
+            gifsicle: { optimizationLevel: 7 },
+            optipng: { optimizationLevel: 7 },
+            mozjpeg: { quality: 80 },
+            pngquant: { quality: [0.7, 0.9] },
+            svgo: {
+              plugins: [
+                { name: 'removeViewBox' },
+                { name: 'removeDimensions' },
+              ],
+            },
+          }),
+        ]),
   ],
   resolve: {
     alias: {

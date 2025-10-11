@@ -1,10 +1,17 @@
 ###
 # Multi-stage Dockerfile for building and serving the frontend
 ###
-FROM node:18-alpine AS builder
+FROM node:20-slim AS builder
 WORKDIR /app
 COPY package*.json ./
+# Install build dependencies for image optimization plugins
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    autoconf automake libtool pkg-config build-essential nasm \
+    libpng-dev zlib1g-dev libjpeg62-turbo-dev \
+    && rm -rf /var/lib/apt/lists/*
+# Install Node dependencies
 RUN npm ci
+# Copy the rest of the application
 COPY . .
 # Build the production assets
 RUN npm run build
