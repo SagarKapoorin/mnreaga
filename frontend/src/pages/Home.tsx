@@ -16,12 +16,17 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16 animate-fade-in">
-        <div className="text-7xl mb-6 animate-bounce-slow inline-block">🇮🇳</div>
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 via-blue-600 to-primary-700 bg-clip-text text-transparent mb-6 leading-tight">
+      <div className="text-center mb-16 animate-fade-in max-w-4xl mx-auto">
+        {/* India flag icon */}
+        <img
+          src="/flag.webp"
+          alt="India flag"
+          className="w-20 h-auto mb-6 animate-bounce-slow inline-block"
+        />
+        <h1 className="text-5xl md:text-6xl font-bold whitespace-normal break-words leading-normal md:leading-tight bg-gradient-to-r from-primary-600 via-blue-600 to-primary-700 bg-clip-text text-transparent mb-6">
           {t('heroTitle') || 'MGNREGA Dashboard'}
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed font-medium">
+        <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed font-medium whitespace-normal break-words">
           {t('heroDescription') ||
             'Track and understand MGNREGA performance in your district. Simple, visual, and accessible for everyone.'}
         </p>

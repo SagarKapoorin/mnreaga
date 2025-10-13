@@ -16,7 +16,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header className="bg-gradient-to-r from-primary-600 to-primary-700 text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="text-4xl animate-pulse">🇮🇳</div>
+            {/* India flag icon */}
+            <img
+              src="/flag.webp"
+              alt="India flag"
+              className="w-10 h-10 animate-pulse"
+            />
             <div>
               <h1 className="text-xl md:text-2xl font-bold">
                 {t('appTitle')}

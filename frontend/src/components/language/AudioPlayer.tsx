@@ -3,7 +3,11 @@ import { useTextToSpeech } from '@hooks/useTextToSpeech';
 import { Volume2, VolumeX } from 'lucide-react';
 
 interface AudioPlayerProps {
+  /** Text to be read aloud */
+  text: string;
+  /** Language code for the text-to-speech engine */
   lang?: string;
+  /** Additional CSS classes for styling */
   className?: string;
 }
 
