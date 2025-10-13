@@ -13,10 +13,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-gradient-to-r from-primary-600 to-primary-700 text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-5 flex items-center justify-between">
-          {/* Logo and Title */}
           <div className="flex items-center space-x-4">
             <div className="text-4xl animate-pulse">🇮🇳</div>
             <div>
@@ -28,7 +26,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               </p>
             </div>
           </div>
-          {/* Navigation Links */}
           <nav className="hidden md:flex space-x-6">
             <NavLink
               to="/"
@@ -61,7 +58,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               {t('navAbout')}
             </NavLink>
           </nav>
-          {/* Controls: Language + Audio */}
           <div className="flex items-center space-x-3">
             <LanguageSwitcher />
             <AudioPlayer
@@ -72,12 +68,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         {children}
       </main>
 
-      {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white mt-20">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

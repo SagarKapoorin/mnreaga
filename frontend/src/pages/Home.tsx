@@ -16,7 +16,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Hero Section */}
       <div className="text-center mb-16 animate-fade-in">
         <div className="text-7xl mb-6 animate-bounce-slow inline-block">🇮🇳</div>
         <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 via-blue-600 to-primary-700 bg-clip-text text-transparent mb-6 leading-tight">
@@ -27,7 +26,6 @@ const Home: React.FC = () => {
             'Track and understand MGNREGA performance in your district. Simple, visual, and accessible for everyone.'}
         </p>
 
-        {/* Stats Banner */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <Card className="text-center bg-gradient-to-br from-primary-50 to-blue-50 border-primary-200 hover:from-primary-100 hover:to-blue-100">
             <div className="text-4xl mb-3 animate-pulse">👥</div>
